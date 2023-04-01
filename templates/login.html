@@ -1,0 +1,38 @@
+{% extends 'login_base.html' %} {%block body %}
+<!-- content -->
+<div class="text-center" style="padding-top: 20px; padding-bottom: 20px">
+  <h1 class="mt-5">blogger login</h1>
+</div>
+{% comment %} form {% endcomment %}
+<div class="container mb-5" style="width: 50%">
+  <form method="post" action="/login">
+    {% comment %} csrf token ensures that the form data is submitted by the
+    website itself {% endcomment %} {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="username"
+        placeholder="enter your username"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">password</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="password"
+        placeholder="enter your password"
+      />
+    </div>
+    <button class="btn btn-primary" type="submit">login</button>
+    <p class="mt-5">haven't registered yet?</p>
+    <button class="btn btn-outline-primary" type="submit">
+      <a href="/register" style="text-decoration: none">register</a>
+    </button>
+  </form>
+</div>
+{% endblock body %}{% block title %} login {% endblock title %}

@@ -1,0 +1,6 @@
+# virtual environment
+venv
+# IDE specific configurations
+.idea
+# database
+db.sqlite3

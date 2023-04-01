@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block body %}
+<!-- content -->
+<div class="text-center" style="padding-top: 20px; padding-bottom: 20px">
+  <h1>write a blog</h1>
+</div>
+{% comment %} form {% endcomment %}
+<div class="container mb-5" style="width: 50%">
+  <form method="post" action="/blogs">
+    {% comment %} csrf token ensures that the form data is submitted by the
+    website itself {% endcomment %} {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">blog title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="title"
+        placeholder="enter the title of the blog"
+      />
+    </div>
+    <div class="form-group">
+      <label for="blog">the blog content</label>
+      <textarea class="form-control" id="blog" rows="3" name="blog"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">submit</button>
+  </form>
+</div>
+{% endblock body %} {%block title %} blogs {% endblock title %}

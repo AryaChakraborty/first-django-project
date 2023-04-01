@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block search_bar %}
+<form
+  class="form-inline my-2 my-lg-0 pr-4"
+  method="post"
+  action="/search_blogs"
+>
+  {% csrf_token %}
+  <input
+    class="form-control mr-sm-2"
+    type="search"
+    placeholder="search titles"
+    aria-label="Search"
+    name="search_keyword"
+  />
+  <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+    Search
+  </button>
+</form>
+{% endblock search_bar %} {% block body %}
+<h1 class="text-center pt-4 pb-4 text-secondary">your search results</h1>
+
+<div class="container-lg">
+  {% if blog_data %}
+  <div class="row pb-4 d-flex justify-content-center">
+    {% for blog in blog_data %}
+    <div class="col-md-3 mt-4 ml-4 pl-4 pr-4 pb-4 border border-mute rounded">
+      <h4 class="mt-2">{{ blog.title }}</h4>
+      <p class="pt-2">{{ blog.content|truncatechars:100 }}</p>
+      <p>{{ blog.date }}</p>
+      <p class="font-weight-bold">by {{ blog.author }}</p>
+      <div class="row">
+        <div class="col-md-5 pr-1">
+          <a
+            href="{% url 'blog_post' pk=blog.pk %}"
+            class="btn btn-secondary"
+            target="_blank"
+            >view more</a
+          >
+        </div>
+        {% if blog.edit_info %}
+        <div class="col-md-3 pl-1 pr-1">
+          <a
+            href="{% url 'edit_blog' pk=blog.pk %}"
+            class="btn btn-warning"
+            target="_blank"
+            >edit</a
+          >
+        </div>
+        <div class="col-md-3 pr-1 pl-1">
+          <a href="{% url 'delete_blog' pk=blog.pk %}" class="btn btn-danger"
+            >delete</a
+          >
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No blog posts yet.</p>
+  {% endif %}
+</div>
+{% endblock body %} {% block title %}read blogs{% endblock title %}

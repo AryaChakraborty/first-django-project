@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block body %}
+<!-- content -->
+<div class="text-center" style="padding-top: 20px; padding-bottom: 20px">
+  <h1>edit this blog</h1>
+</div>
+{% comment %} form {% endcomment %}
+<div class="container mb-5" style="width: 50%">
+  <form method="post" action="{% url 'edit_blog' pk=pk %} ">
+    {% comment %} csrf token ensures that the form data is submitted by the
+    website itself {% endcomment %} {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">new title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="new_title"
+        placeholder="enter new title"
+      />
+    </div>
+    {% comment %} new content {% endcomment %}
+    <div class="form-group">
+      <label for="desc">new content</label>
+      <textarea
+        class="form-control"
+        id="desc"
+        rows="3"
+        name="new_content"
+      ></textarea>
+    </div>
+    <button class="btn btn-warning" type="submit">edit</button>
+  </form>
+</div>
+{% if blog %}
+<hr />
+<div class="container">
+  <h2 class="pt-4 mt-4 text-center text-info">existing blog</h2>
+  <h3 class="pt-4 mt-4 text-center">{{ title }}</h3>
+  <div class="pb-4 mb-4 text-center">{{ blog }}</div>
+</div>
+{% endif %} {% endblock body %} {%block title %} edit blog {% endblock title %}

@@ -1,0 +1,59 @@
+{% extends 'login_base.html' %} {%block body %}
+<!-- content -->
+<div class="text-center" style="padding-top: 20px; padding-bottom: 20px">
+  <h1 class="mt-5">blogger register</h1>
+</div>
+{% comment %} form {% endcomment %}
+<div class="container mb-5" style="width: 50%">
+  <form method="post" action="/register">
+    {% comment %} csrf token ensures that the form data is submitted by the
+    website itself {% endcomment %} {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="username"
+        placeholder="enter your username"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="email"
+        placeholder="enter your email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">password</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="password"
+        placeholder="enter your password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">confirm password</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="confirm_password"
+        placeholder="confirm your password"
+      />
+    </div>
+    <button class="btn btn-primary" type="submit">register</button>
+    {% comment %} login if user registered {% endcomment %}
+    <p class="mt-5">have an account already?</p>
+    <button class="btn btn-outline-primary" type="submit">
+      <a href="/login" style="text-decoration: none">login</a>
+    </button>
+  </form>
+</div>
+{% endblock body %}{% block title %} register {% endblock title %}
